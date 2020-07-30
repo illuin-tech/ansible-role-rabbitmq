@@ -1,12 +1,14 @@
 ---
 - name: remove rabbitmq users
   rabbitmq_user:
+    node: "{{ rabbitmq_nodename }}"
     user: "{{ item }}"
     state: absent
   with_items: "{{ rabbitmq_users_absent }}"
 
 - name: add rabbitmq users
   rabbitmq_user:
+    node: "{{ rabbitmq_nodename }}"
     user: "{{ item.user }}"
     password: "{{ item.password }}"
     vhost: "{{ item.vhost | default('/') }}"
